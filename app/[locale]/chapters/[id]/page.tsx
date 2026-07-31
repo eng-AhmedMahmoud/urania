@@ -42,6 +42,9 @@ export default async function ChapterPage({ params }: { params: Params }) {
   const prev = CHAPTERS[idx - 1];
   const next = CHAPTERS[idx + 1];
   const ui2 = UI2[locale];
+  // "back" points toward the reading start: left in LTR, right in RTL
+  const backArrow = locale === "ar" ? "→" : "←";
+  const fwdArrow = locale === "ar" ? "←" : "→";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -93,14 +96,14 @@ export default async function ChapterPage({ params }: { params: Params }) {
       <nav className="chapter-nav">
         {prev ? (
           <Link href={`/${locale}/chapters/${prev.id}`}>
-            <span className="dir">← {ui2.prev}</span>
+            <span className="dir">{backArrow} {ui2.prev}</span>
             {strip(prev.title[locale])}
           </Link>
         ) : <span />}
         <Link href={`/${locale}`}>{ui2.backHome}</Link>
         {next ? (
           <Link href={`/${locale}/chapters/${next.id}`}>
-            <span className="dir">{ui2.next} →</span>
+            <span className="dir">{ui2.next} {fwdArrow}</span>
             {strip(next.title[locale])}
           </Link>
         ) : <span />}

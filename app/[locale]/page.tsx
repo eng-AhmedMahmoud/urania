@@ -35,9 +35,12 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
         <div className="kicker">{ui.kicker}</div>
         <h1 dangerouslySetInnerHTML={{ __html: ui.title }} />
         <p dangerouslySetInnerHTML={{ __html: ui.heroP }} />
-        <div style={{ marginTop: 28 }}>
-          <Link href={`/${locale}/start-here`} className="btn" style={{ textDecoration: "none", display: "inline-block" }}>
+        <div className="cta-row">
+          <Link href={`/${locale}/start-here`} className="btn-hero">
             🌱 {START_UI[locale].nav}
+          </Link>
+          <Link href={`/${locale}/chapters/royal`} className="btn-hero ghost">
+            {START_UI[locale].ctaChapters}
           </Link>
         </div>
         <div className="rule" />
@@ -84,6 +87,19 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             {f[locale].d}
           </div>
         ))}
+      </div>
+
+      <div className="cta-band">
+        <h2>{START_UI[locale].homeBandTitle}</h2>
+        <p>{START_UI[locale].homeBandSub}</p>
+        <div className="cta-row">
+          <Link href={`/${locale}/chapters/royal`} className="btn-hero">
+            {START_UI[locale].ctaChapters}
+          </Link>
+          <Link href={`/${locale}/events`} className="btn-hero ghost">
+            {START_UI[locale].ctaEvents}
+          </Link>
+        </div>
       </div>
     </main>
   );
