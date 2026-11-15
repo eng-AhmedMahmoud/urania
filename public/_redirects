@@ -1,1 +1,3 @@
 / /en 307
+# RSC payload of "/" in a static export (client navigations to "/")
+/index.txt /en.txt 307
