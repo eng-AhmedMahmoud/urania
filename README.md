@@ -29,3 +29,7 @@ Set `NEXT_PUBLIC_SITE_URL` to the canonical production URL for correct SEO metad
 ## Credits
 
 Constellation plates: Sidney Hall, *Urania's Mirror* (London, 1824) — public domain, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Urania%27s_Mirror).
+
+## Hosting
+
+Static export (`output: 'export'` → `out/`) on Cloudflare Pages: https://urania-bp7.pages.dev (project `urania`). Deploy with `bash scripts/deploy-pages.sh`; the merge gate is `bash scripts/ci-local.sh`. `/` → `/en` is in `public/_redirects`. The sky-news feed on `/events` is fetched at build time, so a redeploy refreshes it. The old Vercel URL redirects here.
