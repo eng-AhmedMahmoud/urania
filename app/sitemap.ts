@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { CHAPTERS } from "@/lib/content";
 import { LOCALES, SITE_URL } from "@/lib/site";
 
+// Generated at build time (static export).
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const subpaths = [
     "",
