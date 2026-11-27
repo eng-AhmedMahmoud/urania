@@ -51,8 +51,9 @@ export NEXT_TELEMETRY_DISABLED=1
 test -f out/en.html && test -f out/ar.html \
   || { echo "deploy: out/en.html or out/ar.html missing" >&2; exit 1; }
 
-# COPYFILE_DISABLE: no macOS ._* AppleDouble files in the release.
-COPYFILE_DISABLE=1 tar -C out -czf "$WORK/release.tgz" .
+# COPYFILE_DISABLE + --no-xattrs: no macOS ._* files or xattr headers (GNU tar
+# on the VPS warns about every one) in the release.
+COPYFILE_DISABLE=1 tar --no-xattrs -C out -czf "$WORK/release.tgz" .
 echo "deploy: built $(du -h "$WORK/release.tgz" | cut -f1) release"
 cd "$ROOT"
 
