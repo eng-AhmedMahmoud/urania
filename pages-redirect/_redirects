@@ -1,0 +1,4 @@
+# Cloudflare Pages project `urania`: urania-bp7.pages.dev is the old address of
+# this site. Every path answers a permanent redirect to the same path on
+# urania.devya.dev (scripts/deploy-pages-redirect.sh).
+/* https://urania.devya.dev/:splat 301

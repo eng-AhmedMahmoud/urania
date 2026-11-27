@@ -32,4 +32,8 @@ Constellation plates: Sidney Hall, *Urania's Mirror* (London, 1824) — public d
 
 ## Hosting
 
-Static export (`output: 'export'` → `out/`) on Cloudflare Pages: https://urania-bp7.pages.dev (project `urania`). Deploy with `bash scripts/deploy-pages.sh`; the merge gate is `bash scripts/ci-local.sh`. `/` → `/en` is in `public/_redirects`. The sky-news feed on `/events` is fetched at build time, so a redeploy refreshes it. The old Vercel URL redirects here.
+https://urania.devya.dev — the static export (`output: 'export'` → `out/`) served by nginx on the Devya VPS (`/home/devya/projects/urania/current`, site `deploy/nginx/urania.conf`). No Vercel, no container.
+
+- **Deploy:** `bash scripts/deploy-vps.sh` builds origin/main on the Mac, ships `out/` to `releases/<sha>` and points `current` at it (first time: `--setup` installs the nginx site and the TLS certificate). The sky-news feed on `/events` is fetched at build time, so a redeploy refreshes it.
+- **Merge gate:** Jenkins `continuous-integration/jenkins/pr-head`, which runs `bash scripts/ci-local.sh` (run it by hand when Jenkins is busy).
+- **Redirects:** `/` → `/en` is in the nginx site. The old Cloudflare Pages address https://urania-bp7.pages.dev answers a 301 to the same path here (`bash scripts/deploy-pages-redirect.sh`). The older `urania.vercel.app` is on a paused Vercel team and is not used.
